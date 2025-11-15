@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { preview } from "../assets";
 import { FormField, Loader } from "../components";
+import { getRandomPrompt } from "../utils";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -19,12 +20,14 @@ const CreatePost = () => {
 
   }
 
-  const handleChange = () => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
+    setForm({ ...form, [e.target.name]: e.target.value})
   }
 
   const handleSurpriseMe = () => {
-
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt})
   }
 
   const generateImage = () => { 
@@ -38,7 +41,7 @@ const CreatePost = () => {
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Create imaginative and visually stunning images through DALL•E AI and share them with the community.</p>
       </div>
       <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 items-start">
           <FormField
             labelName="your name"
             type="text"
@@ -57,7 +60,7 @@ const CreatePost = () => {
             isSurpriseMe
             handleSurpriseMe={handleSurpriseMe}
           />
-          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 h-64 flex w-64 justify-center items-center">
+          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 mt-2 h-64 flex w-64 justify-center items-center">
             {form.photo ? (
               <img src={form.photo} alt={form.prompt} />
             ) : (
@@ -72,7 +75,7 @@ const CreatePost = () => {
           </div>
         </div>
         <div className="mt-5 flex gap-5">
-          <button type="button" onClick={generateImage} className="bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+          <button type="button" onClick={generateImage} className="bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white">
             {generatingImg? 'Generating...': "Generate"}
           </button>
         </div>
