@@ -56,12 +56,12 @@ const CreatePost = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto flex-col items-center">
       <div>
         <h1 className="font-extrabold text-[#222328] text-[32px]">Create</h1>
-        <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">Create imaginative and visually stunning images through DALL•E AI and share them with the community.</p>
+        <p className="mt-2 text-[#666e75] text-[14px] w-full mx-auto">Create imaginative and visually stunning images through DALL•E AI and share them with the community.</p>
       </div>
-      <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
+      <form className="mt-16 max-w-2xl mx-auto" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5 items-start">
           <FormField
             labelName="your name"
@@ -81,9 +81,9 @@ const CreatePost = () => {
             isSurpriseMe
             handleSurpriseMe={handleSurpriseMe}
           />
-          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 mt-2 h-64 flex w-64 justify-center items-center">
+          <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-3 mt-2 h-110 flex w-full justify-center items-center overflow-hidden">
             {form.photo ? (
-              <img src={form.photo} alt={form.prompt} />
+              <img src={form.photo} alt={form.prompt} className="object-contain"/>
             ) : (
               <img src={preview} alt="preview" className="w-9/12 h-9/12 object-contain opacity-40" />
             )}
@@ -96,16 +96,16 @@ const CreatePost = () => {
           </div>
         </div>
         <div className="mt-5 flex gap-5">
-          <button type="button" onClick={generateImage} className="bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white">
-            {generatingImg? 'Generating...': "Generate"}
+          <button type="button" onClick={generateImage} className="bg-green-700 font-medium rounded-md text-sm w-full px-5 py-2.5 text-center text-white">
+            {generatingImg? 'Generating... it may take a few minutes...': "Generate"}
           </button>
         </div>
         <div className="mt-10">
         {/* TODO: 01:27:00 share with community */}
-          <p className="mt-2 text-[#666e75 text-[14px]">Once you have created the image you want, you can share your image with the community.</p>
+          {/* <p className="mt-2 text-[#666e75 text-[14px]">Once you have created the image you want, you can share your image with the community.</p>
           <button type="submit" className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2 text-center">
             {loading ? "Sharing..." : "Share with the community"}
-          </button>
+          </button> */}
         </div>
       </form>
     </section>

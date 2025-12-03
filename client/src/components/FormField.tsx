@@ -11,7 +11,7 @@ interface FormFieldProps {
 
 const FormField = ({ labelName, type, name, placeholder, value, handleChange, handleSurpriseMe, isSurpriseMe }: FormFieldProps) => {
   return (
-    <div className="mb-1">
+    <div className="mb-1 w-full">
       <div className="flex items-center gap-2 mb-2">
         <label htmlFor={name} className="block text-sm font-medium text-gray-900">
           {labelName}
@@ -23,7 +23,7 @@ const FormField = ({ labelName, type, name, placeholder, value, handleChange, ha
           </button>
         )}
       </div>
-      <input type={type} id={name} name={name} value={value} onChange={handleChange} placeholder={placeholder} required className="bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-[#4649ff] focus:border-[#4649ff] w-100 px-2 py-1" />
+      <input type={type} id={name} name={name} value={value} onChange={handleChange} placeholder={placeholder} required className="bg-gray-50 border-gray-300 border-2 text-gray-900 text-sm rounded-sm focus:ring-[#4649ff] focus:border-[#4649ff] w-full px-2 py-1" />
     </div>
   )
 }
