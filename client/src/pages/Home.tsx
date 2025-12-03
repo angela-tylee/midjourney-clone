@@ -2,8 +2,12 @@
 import { useState } from "react";
 import { Card, Loader } from "../components";
 
+interface Post {
+  id: string;
+  [key: string]: unknown;
+}
 
-const RenderCards = ({ data, title}: { data: unknown[], title: string}) => {
+const RenderCards = ({ data, title}: { data: Post[], title: string}) => {
   if(data?.length > 0) return data.map((post) => <Card key={post.id} {...post}/>)
 
     return (
